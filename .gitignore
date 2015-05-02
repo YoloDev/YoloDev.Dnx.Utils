@@ -6,6 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+.nuget
 
 # Build results
 [Dd]ebug/
