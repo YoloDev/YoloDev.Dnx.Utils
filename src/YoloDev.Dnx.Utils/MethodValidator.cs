@@ -9,7 +9,7 @@ namespace YoloDev.Dnx.Utils
     {
         public static StatementSyntax ValidateWithFunction(Type type, string methodName, ExpressionSyntax value, string name)
         {
-            var fullName = $"{type.Namespace}.{type.Name}.{methodName}";
+            var fullName = $"{type.FullName}.{methodName}";
             var valueArgument = SyntaxFactory.Argument(value);
             var nameArgument = SyntaxFactory.Argument(
                 SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression, SyntaxFactory.Literal(name)));

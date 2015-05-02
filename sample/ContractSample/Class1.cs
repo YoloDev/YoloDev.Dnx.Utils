@@ -8,6 +8,12 @@ namespace ContractSample
     {
         public Class1([NotNull] string foo)
         {
+            Foo(foo);
+        }
+        
+        public void Foo([NotNull] string bar)
+        {
+            System.Console.WriteLine(bar);
         }
     }
 }

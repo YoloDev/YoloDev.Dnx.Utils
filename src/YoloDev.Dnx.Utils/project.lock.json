@@ -3,17 +3,17 @@
   "version": -9997,
   "targets": {
     "DNX,Version=v4.5.1": {
-      "Microsoft.CodeAnalysis.Analyzers/1.0.0-rc3-20150429-05": {
+      "Microsoft.CodeAnalysis.Analyzers/1.0.0-rc3-20150430-04": {
         "frameworkAssemblies": [
           "System",
           "System"
         ]
       },
-      "Microsoft.CodeAnalysis.Common/1.0.0-rc3-20150429-05": {
+      "Microsoft.CodeAnalysis.Common/1.0.0-rc3-20150430-04": {
         "dependencies": {
           "System.Collections.Immutable": "[1.1.34-rc]",
           "System.Reflection.Metadata": "[1.0.19-rc]",
-          "Microsoft.CodeAnalysis.Analyzers": "[1.0.0-rc3-20150429-05]"
+          "Microsoft.CodeAnalysis.Analyzers": "[1.0.0-rc3-20150430-04]"
         },
         "compile": [
           "lib/net45/Microsoft.CodeAnalysis.Desktop.dll",
@@ -24,9 +24,9 @@
           "lib/net45/Microsoft.CodeAnalysis.dll"
         ]
       },
-      "Microsoft.CodeAnalysis.CSharp/1.0.0-rc3-20150429-05": {
+      "Microsoft.CodeAnalysis.CSharp/1.0.0-rc3-20150430-04": {
         "dependencies": {
-          "Microsoft.CodeAnalysis.Common": "[1.0.0-rc3-20150429-05]"
+          "Microsoft.CodeAnalysis.Common": "[1.0.0-rc3-20150430-04]"
         },
         "compile": [
           "lib/net45/Microsoft.CodeAnalysis.CSharp.Desktop.dll",
@@ -90,12 +90,12 @@
       }
     },
     "DNXCore,Version=v5.0": {
-      "Microsoft.CodeAnalysis.Analyzers/1.0.0-rc3-20150429-05": {},
-      "Microsoft.CodeAnalysis.Common/1.0.0-rc3-20150429-05": {
+      "Microsoft.CodeAnalysis.Analyzers/1.0.0-rc3-20150430-04": {},
+      "Microsoft.CodeAnalysis.Common/1.0.0-rc3-20150430-04": {
         "dependencies": {
           "System.Collections.Immutable": "[1.1.34-rc]",
           "System.Reflection.Metadata": "[1.0.19-rc]",
-          "Microsoft.CodeAnalysis.Analyzers": "[1.0.0-rc3-20150429-05]"
+          "Microsoft.CodeAnalysis.Analyzers": "[1.0.0-rc3-20150430-04]"
         },
         "compile": [
           "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll"
@@ -104,9 +104,9 @@
           "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll"
         ]
       },
-      "Microsoft.CodeAnalysis.CSharp/1.0.0-rc3-20150429-05": {
+      "Microsoft.CodeAnalysis.CSharp/1.0.0-rc3-20150430-04": {
         "dependencies": {
-          "Microsoft.CodeAnalysis.Common": "[1.0.0-rc3-20150429-05]"
+          "Microsoft.CodeAnalysis.Common": "[1.0.0-rc3-20150430-04]"
         },
         "compile": [
           "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll"
@@ -353,11 +353,11 @@
     }
   },
   "libraries": {
-    "Microsoft.CodeAnalysis.Analyzers/1.0.0-rc3-20150429-05": {
-      "sha512": "5bnVUxPbD2Uq1YmYlyGshUo8T/qtprHuj87BRHnDjzsAR3HneDNHSpd1RkuYrlctNjklmV7vnlhBwhIODKh97g==",
+    "Microsoft.CodeAnalysis.Analyzers/1.0.0-rc3-20150430-04": {
+      "sha512": "neLLRNnXndmvMg5CVTkQFHf0CHExEbhPtOzxfXVfgglAtWcPJVgqmZSF/aLdjmYcLNDIQjySA2XPQSW4YL29sg==",
       "files": [
-        "Microsoft.CodeAnalysis.Analyzers.1.0.0-rc3-20150429-05.nupkg",
-        "Microsoft.CodeAnalysis.Analyzers.1.0.0-rc3-20150429-05.nupkg.sha512",
+        "Microsoft.CodeAnalysis.Analyzers.1.0.0-rc3-20150430-04.nupkg",
+        "Microsoft.CodeAnalysis.Analyzers.1.0.0-rc3-20150430-04.nupkg.sha512",
         "Microsoft.CodeAnalysis.Analyzers.nuspec",
         "ThirdPartyNotices.rtf",
         "tools/install.ps1",
@@ -368,11 +368,11 @@
         "tools/analyzers/VB.NET/Microsoft.CodeAnalysis.VisualBasic.Analyzers.dll"
       ]
     },
-    "Microsoft.CodeAnalysis.Common/1.0.0-rc3-20150429-05": {
-      "sha512": "VnNpM01klJaIGwyDxC5Qi9eRvKp0Zb3yvNy78CbO03OGHC41gyrukoxkeVMHNiCpsO+ugpDlEW/t0XZhInLe7A==",
+    "Microsoft.CodeAnalysis.Common/1.0.0-rc3-20150430-04": {
+      "sha512": "kNxFtF8lMOyW5TVxu5HmExYwGjpnKP0EG1JYB/UYV1h9uNsyGqYtn3nzNeBpgb4jIS+i1l//cAik5cIBCn87iA==",
       "files": [
-        "Microsoft.CodeAnalysis.Common.1.0.0-rc3-20150429-05.nupkg",
-        "Microsoft.CodeAnalysis.Common.1.0.0-rc3-20150429-05.nupkg.sha512",
+        "Microsoft.CodeAnalysis.Common.1.0.0-rc3-20150430-04.nupkg",
+        "Microsoft.CodeAnalysis.Common.1.0.0-rc3-20150430-04.nupkg.sha512",
         "Microsoft.CodeAnalysis.Common.nuspec",
         "ThirdPartyNotices.rtf",
         "lib/net45/Microsoft.CodeAnalysis.Desktop.dll",
@@ -383,11 +383,11 @@
         "lib/portable-net45+win8/Microsoft.CodeAnalysis.xml"
       ]
     },
-    "Microsoft.CodeAnalysis.CSharp/1.0.0-rc3-20150429-05": {
-      "sha512": "SluB4YoNbs+CcdpF/DnVqtjzjeLv+xsTw99GudSM0Co2fYvMwdZ4ZGXJEXMoWAkCa2Wk/wZPxdzC12NRUarJZA==",
+    "Microsoft.CodeAnalysis.CSharp/1.0.0-rc3-20150430-04": {
+      "sha512": "XdzR2pAFOfw3MVbsB3brAiAeKv+y/b9Huce0W+YO2++gPRU8rRXws0e18yA39kX/yz2oHsPCf8bXf99+jNQ9TQ==",
       "files": [
-        "Microsoft.CodeAnalysis.CSharp.1.0.0-rc3-20150429-05.nupkg",
-        "Microsoft.CodeAnalysis.CSharp.1.0.0-rc3-20150429-05.nupkg.sha512",
+        "Microsoft.CodeAnalysis.CSharp.1.0.0-rc3-20150430-04.nupkg",
+        "Microsoft.CodeAnalysis.CSharp.1.0.0-rc3-20150430-04.nupkg.sha512",
         "Microsoft.CodeAnalysis.CSharp.nuspec",
         "ThirdPartyNotices.rtf",
         "lib/net45/Microsoft.CodeAnalysis.CSharp.Desktop.dll",
