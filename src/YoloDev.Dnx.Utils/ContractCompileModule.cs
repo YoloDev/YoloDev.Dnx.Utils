@@ -23,20 +23,20 @@ namespace YoloDev.Dnx.Utils
 
         public void BeforeCompile(BeforeCompileContext context)
         {
-            using (var loadContext = _loadContextFactory.Create()) 
-            {
+            //using (var loadContext = _loadContextFactory.Create()) 
+            //{
                 var compilation = context.Compilation;
                 foreach (var st in compilation.SyntaxTrees)
                 {
                     var root = st.GetRoot();
                     //if (!System.Diagnostics.Debugger.IsAttached) System.Diagnostics.Debugger.Launch();
-                    var newRoot = ContractSyntaxRewriter.Rewrite(root, compilation.GetSemanticModel(st), loadContext, _services);
+                    var newRoot = ContractSyntaxRewriter.Rewrite(root, compilation.GetSemanticModel(st), null, _services);
                     var newTree = st.WithRootAndOptions(newRoot, st.Options);
                     compilation = compilation.ReplaceSyntaxTree(st, newTree);
                 }
                 
                 context.Compilation = compilation;
-            }
+            //}
         }
     }
 }

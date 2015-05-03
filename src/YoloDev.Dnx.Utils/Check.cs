@@ -45,7 +45,7 @@ namespace YoloDev.Dnx.Utils
         
         public static void NotEmpty<T>(IEnumerable<T> enumerable, string propertyName, string parameterName)
         {
-            NotNull(enumerable, parameterName);
+            NotNull(enumerable, propertyName, parameterName);
             
             if (!enumerable.Any())
             {
@@ -58,6 +58,8 @@ namespace YoloDev.Dnx.Utils
 
         public static void NotEmpty(string value, string parameterName)
         {
+            NotNull(value, parameterName);
+
             if(string.IsNullOrWhiteSpace(value))
             {
                 NotEmpty(parameterName, nameof(parameterName));
@@ -68,6 +70,8 @@ namespace YoloDev.Dnx.Utils
         
         public static void NotEmpty(string value, string propertyName, string parameterName)
         {
+            NotNull(value, propertyName, parameterName);
+
             if(string.IsNullOrWhiteSpace(value))
             {
                 NotEmpty(propertyName, nameof(propertyName));
