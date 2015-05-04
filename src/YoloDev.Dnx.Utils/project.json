@@ -1,10 +1,9 @@
 ﻿{
   "version": "1.0.0-*",
   "description": "",
-  "authors": [ "" ],
+  "authors": [ "Alxandr" ],
   "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
+  "projectUrl": "https://github.com/YoloDev/YoloDev.Dnx.Utils",
 
   "dependencies": {
     "Microsoft.CodeAnalysis.CSharp": "1.0.0-*",
