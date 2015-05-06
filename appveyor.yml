@@ -7,9 +7,6 @@ init:
 # this turns of AppVeyor automatic searching for test-assemblies, not the actual testing
 test: off
 
-install:
-  - ps: (New-Object Net.WebClient).DownloadFile('https://www.nuget.org/nuget.exe', 'C:\Tools\NuGet\NuGet.exe')
-
 build_script:
   - set DNX_BUILD_VERSION=000%APPVEYOR_BUILD_NUMBER% #temp
   - set DNX_BUILD_VERSION=%DNX_BUILD_VERSION:~-4%
