@@ -15,8 +15,8 @@ build_script:
   - set DNX_BUILD_VERSION=%DNX_BUILD_VERSION:~-4%
   - build.cmd
 
-#artifacts:
-#  - path: artifacts\build\*.nupkg
+artifacts:
+  - path: artifacts\build\*.nupkg
 
 deploy:
   - provider: Environment
