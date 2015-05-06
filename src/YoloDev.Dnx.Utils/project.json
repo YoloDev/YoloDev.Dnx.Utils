@@ -2,6 +2,7 @@
   "version": "1.0.0-*",
   "description": "Utilities for Dnx projects",
   "authors": [ "Alxandr" ],
+  "owners": [ "Alxandr" ],
   "tags": [ "" ],
   "projectUrl": "https://github.com/YoloDev/YoloDev.Dnx.Utils",
 

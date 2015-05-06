@@ -8,7 +8,7 @@
 *.sln.docstates
 .nuget
 log.txt
-*.lock.json
+project.lock.json
 
 # Build results
 [Dd]ebug/
