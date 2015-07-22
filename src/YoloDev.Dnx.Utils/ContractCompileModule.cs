@@ -2,6 +2,7 @@
 using Microsoft.Framework.Runtime.Roslyn;
 using Microsoft.Framework.Runtime;
 using YoloDev.Dnx.Utils.Rewriters;
+using Microsoft.Framework.Runtime.Infrastructure;
 
 namespace YoloDev.Dnx.Utils
 {
@@ -9,13 +10,13 @@ namespace YoloDev.Dnx.Utils
     {
         readonly IAssemblyLoadContextFactory _loadContextFactory;
         readonly IServiceProvider _services;
-        
+
         public ContractCompileModule(IAssemblyLoadContextFactory loadContextFactory, IServiceProvider services)
         {
             _loadContextFactory = loadContextFactory;
             _services = services;
         }
-        
+
         public void AfterCompile(AfterCompileContext context)
         {
 
@@ -23,7 +24,7 @@ namespace YoloDev.Dnx.Utils
 
         public void BeforeCompile(BeforeCompileContext context)
         {
-            //using (var loadContext = _loadContextFactory.Create()) 
+            //using (var loadContext = _loadContextFactory.Create())
             //{
                 var compilation = context.Compilation;
                 foreach (var st in compilation.SyntaxTrees)
@@ -34,7 +35,7 @@ namespace YoloDev.Dnx.Utils
                     var newTree = st.WithRootAndOptions(newRoot, st.Options);
                     compilation = compilation.ReplaceSyntaxTree(st, newTree);
                 }
-                
+
                 context.Compilation = compilation;
             //}
         }
