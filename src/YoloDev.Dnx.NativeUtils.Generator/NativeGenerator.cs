@@ -31,6 +31,11 @@ namespace YoloDev.Dnx.NativeUtils.Generator
 
         SyntaxTree Generate()
         {
+            foreach (var ctor in _api.Symbol.Constructors)
+            {
+                GenerateCtor(ctor);
+            }
+
             foreach (var method in _api.Methods)
             {
                 GenerateMethod(method);
@@ -38,6 +43,64 @@ namespace YoloDev.Dnx.NativeUtils.Generator
 
             return SyntaxFactory.SyntaxTree(SyntaxFactory.CompilationUnit()
                 .WithMembers(new SyntaxList<MemberDeclarationSyntax>().Add(_ns.AddMembers(_class.AddMembers(_members.ToArray())))).NormalizeWhitespace());
+        }
+
+        void GenerateCtor(IMethodSymbol ctor)
+        {
+            var syntax = SyntaxFactory.ConstructorDeclaration(_class.Identifier)
+                .WithModifiers(GetModifiers(ctor.DeclaredAccessibility))
+                .WithBody(SyntaxFactory.Block())
+                .AddAttributeLists(SyntaxFactory.AttributeList().AddAttributes(ctor.GetAttributes().Select(RecreateAttribute).ToArray()));
+
+            var parameters = new List<ParameterSyntax> ();
+            var arguments = new List<ArgumentSyntax> ();
+
+            foreach (var p in ctor.Parameters)
+            {
+                var identifier = SyntaxFactory.Identifier(p.Name);
+                var type = SyntaxFactory.ParseTypeName(p.Type.ToDisplayString());
+                var parameter = SyntaxFactory.Parameter(identifier).WithType(type);
+                var argument = SyntaxFactory.Argument(SyntaxFactory.IdentifierName(identifier));
+
+                parameters.Add(parameter);
+                arguments.Add(argument);
+            }
+
+            syntax = syntax
+                .AddParameterListParameters(parameters.ToArray())
+                .WithInitializer(
+                    SyntaxFactory.ConstructorInitializer(
+                        SyntaxKind.BaseConstructorInitializer,
+                        SyntaxFactory.ArgumentList().AddArguments(arguments.ToArray())
+                    )
+                );
+
+            _members.Add(syntax);
+        }
+
+        static SyntaxTokenList GetModifiers(Accessibility accessibility)
+        {
+            var tokens = new List<SyntaxToken> ();
+            switch (accessibility)
+            {
+                case Accessibility.Public:
+                    tokens.Add(SyntaxFactory.Token(SyntaxKind.PublicKeyword)); break;
+                case Accessibility.Private:
+                    tokens.Add(SyntaxFactory.Token(SyntaxKind.PrivateKeyword)); break;
+                case Accessibility.Protected:
+                    tokens.Add(SyntaxFactory.Token(SyntaxKind.ProtectedKeyword)); break;
+                case Accessibility.Internal:
+                    tokens.Add(SyntaxFactory.Token(SyntaxKind.InternalKeyword)); break;
+                case Accessibility.ProtectedAndInternal:
+                    tokens.Add(SyntaxFactory.Token(SyntaxKind.ProtectedKeyword));
+                    tokens.Add(SyntaxFactory.Token(SyntaxKind.InternalKeyword)); break;
+                default:
+                    // CommonAccessibility.ProtectedOrInternal can't be expressed in C#
+                    // but is legal in metadata.
+                    throw new NotSupportedException();
+            }
+
+            return SyntaxFactory.TokenList(tokens);
         }
 
         void GenerateMethod(IMethodSymbol method)
@@ -162,6 +225,29 @@ namespace YoloDev.Dnx.NativeUtils.Generator
 
             method = method.AddBodyStatements(statements.ToArray());
             return method;
+        }
+
+        static AttributeSyntax RecreateAttribute(AttributeData attr)
+        {
+            var args = new List<AttributeArgumentSyntax>();
+
+            foreach (var ctorArg in attr.ConstructorArguments)
+            {
+                var arg = SyntaxFactory.AttributeArgument(SyntaxFactory.ParseExpression(ctorArg.ToCSharpString()));
+                args.Add(arg);
+            }
+
+            foreach (var namedArg in attr.NamedArguments)
+            {
+                var arg = SyntaxFactory.AttributeArgument(SyntaxFactory.ParseExpression(namedArg.Value.ToCSharpString()))
+                    .WithNameEquals(SyntaxFactory.NameEquals(namedArg.Key));
+                args.Add(arg);
+            }
+
+            var syntax = SyntaxFactory.Attribute(SyntaxFactory.ParseName(attr.AttributeClass.ToDisplayString()))
+                .AddArgumentListArguments(args.ToArray());
+
+            return syntax;
         }
 
         static ExpressionSyntax InstansiateAttribute(AttributeData attr)
