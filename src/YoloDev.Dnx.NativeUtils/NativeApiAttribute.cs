@@ -3,7 +3,17 @@ using System.ComponentModel;
 
 namespace YoloDev.Dnx.NativeUtils
 {
-  [AttributeUsage(AttributeTargets.Class)]
+  [AttributeUsage(AttributeTargets.Assembly)]
   [EditorBrowsable(EditorBrowsableState.Never)]
-  public sealed class NativeApiAttribute : Attribute {}
+  public sealed class NativeApiAttribute : Attribute
+  {
+      readonly Type _target;
+      readonly Type _implementation;
+
+      public NativeApiAttribute(Type target, Type implementation)
+      {
+          _target = target;
+          _implementation = implementation;
+      }
+  }
 }

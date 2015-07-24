@@ -19,6 +19,7 @@ namespace YoloDev.Dnx.NativeUtils.Generator
 
         readonly List<MemberDeclarationSyntax> _members = new List<MemberDeclarationSyntax>();
         readonly ClassDeclarationSyntax _class;
+        readonly AttributeSyntax _attribute;
 
         public NativeGenerator(NativeModel api, Compilation compilation)
         {
@@ -27,6 +28,11 @@ namespace YoloDev.Dnx.NativeUtils.Generator
             _class = SyntaxFactory.ClassDeclaration($"NativeMethods${api.Symbol.MetadataName}")
                 .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(api.Symbol.ToDisplayString())))
                 .AddAttributeLists(SyntaxFactory.AttributeList().AddAttributes(CreateAttribute<CompilerGeneratedAttribute>()));
+            _attribute = SyntaxFactory.Attribute(SyntaxFactory.ParseName(compilation.GetTypeName<NativeApiAttribute>()))
+                .AddArgumentListArguments(
+                    SyntaxFactory.AttributeArgument(SyntaxFactory.TypeOfExpression(SyntaxFactory.ParseTypeName(api.Symbol.ToDisplayString()))),
+                    SyntaxFactory.AttributeArgument(SyntaxFactory.TypeOfExpression(SyntaxFactory.QualifiedName(_ns.Name, SyntaxFactory.IdentifierName(_class.Identifier))))
+                );
         }
 
         SyntaxTree Generate()
@@ -42,6 +48,7 @@ namespace YoloDev.Dnx.NativeUtils.Generator
             }
 
             return SyntaxFactory.SyntaxTree(SyntaxFactory.CompilationUnit()
+                .AddAttributeLists(SyntaxFactory.AttributeList().WithTarget(SyntaxFactory.AttributeTargetSpecifier(SyntaxFactory.Token(SyntaxKind.AssemblyKeyword))).AddAttributes(_attribute))
                 .WithMembers(new SyntaxList<MemberDeclarationSyntax>().Add(_ns.AddMembers(_class.AddMembers(_members.ToArray())))).NormalizeWhitespace());
         }
 
