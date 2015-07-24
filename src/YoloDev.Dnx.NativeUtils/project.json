@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0-beta-*",
+  "description": "Utilities for Dnx projects",
+  "authors": [ "Alxandr" ],
+  "owners": [ "Alxandr" ],
+  "tags": [ "" ],
+  "projectUrl": "https://github.com/YoloDev/YoloDev.Dnx.Utils",
+
+  "dependencies": {
+  },
+
+  "frameworks": {
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.Runtime": "",
+        "System.Threading.Tasks": ""
+      }
+    },
+    "dnxcore50": {
+      "dependencies": {
+        "System.Collections": "4.0.0-*",
+        "System.Linq": "4.0.0-*",
+        "System.Threading": "4.0.0-*",
+        "System.Threading.Tasks": "4.0.0-*",
+        "Microsoft.CSharp": "4.0.0-*",
+        "System.Console": "4.0.0-*",
+        "System.Diagnostics.Debug": "4.0.0-*"
+      }
+    }
+  }
+}
